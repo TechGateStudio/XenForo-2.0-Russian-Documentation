@@ -44,7 +44,7 @@ Some of the XenForo developers use a virtual machine called [Scotch Box](https:/
 
 [Installing Scotch Box for use with XenForo](https://xenforo.com/xf2-docs/dev/scotchbox/)
 
-### Встроенная сборка
+### Готовые сборки
 There are many pre-built stacks out there and they may vary in feature set, performance and reliability. Bitnami maintain a number of stacks, including [LAMP](https://bitnami.com/stack/lamp), [MAMP](https://bitnami.com/stack/mamp) and [WAMP](https://bitnami.com/stack/wamp) stacks for use on Linux, Mac and Windows respectively. They all include a fully configured installation of Apache, MySQL and PHP and include PhpMyAdmin for managing MySQL.
 
 ## Загрузка
