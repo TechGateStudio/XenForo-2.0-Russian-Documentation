@@ -2,32 +2,33 @@
 
 # Начало работы
 
-This documentation aims to get you started with XenForo 2.0 development. Pre-requisites for this documentation assume you will be familiar with, amongst other things, PHP and MySQL. It is not essential to have experience with a previous version of XenForo, but it would be an advantage.
+Эта документация предназначена для ознакомления вас с разработкой под XenForo 2.0. Предполагается, что перед началом работы с этой документацией вы уже знакомы с базовыми вещами, вроде PHP и MySQL. Опыт работы с предыдущими версиями XenForo не требуется, но предоставит ряд преимуществ.
 
-On the subsequent pages we will walk you through a brief overview of how to setup a local server, getting ready for installation, doing a clean install of XenForo 2.0, and run through some of the concepts of XF2 development.
+На последующих страницах документации мы расскажем об установке локального сервера, подготовке к установке и самом процессе чистой установки XenForo 2.0 и объясним некоторые базовые концепции разработки под XF2.
 
 ## Что нового для разработчиков?
 
-Although XenForo 2.0 adds a lot of improvements for your forums and its members, a significant amount of effort has been put into improving the underlying framework of XenForo. You can read more information about these changes in the following threads:
+Хотя XenForo 2.0 добавляет много улучшений для ваших форумов и его участников, значительные усилия были направлены на улучшение базовой структуры XenForo. Вы можете прочитать дополнительную информацию об этих изменениях в следующих темах:
 
-[What's new for developers in XenForo 2 (part 1)](https://xf2demo.xenforo.com/threads/whats-new-for-developers-in-xenforo-2-part-1.1297/)
-[What's new for developers in XenForo 2 (part 2)](https://xf2demo.xenforo.com/threads/whats-new-for-developers-in-xenforo-2-part-2.1409/)
+[Что нового для разработчиков в XenForo 2 (часть 1)](https://xf2demo.xenforo.com/threads/whats-new-for-developers-in-xenforo-2-part-1.1297/)<sup><a href="#Prim1">1</a></sup>
+
+[Что нового для разработчиков в XenForo 2 (часть 2)](https://xf2demo.xenforo.com/threads/whats-new-for-developers-in-xenforo-2-part-2.1409/)<sup><a href="#Prim1">1</a></sup>
 ## Начало работы
-Getting started with XF development is easy. You just need to download the files, upload them to a web server and trigger the install.
+Начать разработку на XF легко. Вам просто нужно скачать файлы, загрузить их на веб-сервер и запустить установку.
 
-If you don't have a web server, yet, don't worry, you can set one up on your local machine.
+Если у вас еще нет веб-сервера, не беспокойтесь, вы легко сможете настроить его в локальном окружении.
 
 ## Загрузка XF 2.0
 To download XF 2.0, just visit the [Customer Area](https://xenforo.com/customers) and log in as normal. Locate the correct license and click the "Download XenForo" link. Select the version you wish to download, the package type and accept the license agreement. Finally, click the Download button to download the files.
 
 ## Системные требования XF 2.0
-The requirements for running XF 2.0 have changed since XF 1.5. The recommended requirements are as follows:
+Требования к запуску XF 2.0 изменились с XF 1.5. Рекомендуемые требования:
 
 * PHP: 5.4.0+
 * MySQL: 5.5+
-* PHP extensions: MySQLi, GD (with JPEG support), PCRE, SPL, SimpleXML, DOM, JSON, iconv, ctype, cURL
+* PHP расширения: MySQLi, GD (with JPEG support), PCRE, SPL, SimpleXML, DOM, JSON, iconv, ctype, cURL
 
-[Download the requirements test script.](https://xenforo.com/xf2-docs/dev/files/xenforo2-requirements-test.zip)
+[Загрузить скрипт проверки требований.](https://xenforo.com/xf2-docs/dev/files/xenforo2-requirements-test.zip)
 
 ## Настройка локального сервера
 It's often more convenient to set up a local web server for development. There are generally two approaches for this:
@@ -79,7 +80,7 @@ XenForo will need to write files to specific locations while running. In normal 
 When the CLI is involved, this situation gets trickier as there are now potentially two users that need to be able to write to the files. As such, it's important to take steps to avoid problems writing to these files. Here are a few options.
 
 1. Use the same user for the CLI and the web server. This may take the form of you switching to the web server user before running any installation or upgrade command (or any other that will write files).
-If available, consider applying ACLs to the `data` and `internal_data` directories. 2. This concept varies by OS and configuration, but the general idea is described [here](http://symfony.com/doc/current/setup/file_permissions.html).
+If available, consider applying ACLs to the `data` and `internal_data` directories. 2. This concept varies by OS and configuration, but the general idea is described [здесь](http://symfony.com/doc/current/setup/file_permissions.html).
 3. Force specific permissions on what is written by PHP. This can be done via the src/config.php file with a line like this: `$config['chmodWritableValue'] = 0666;` This approach is potentially the simplest for development purposes.
 
 Note that if you are developing add-ons, you may potentially have other locations that need to be written to by the CLI and web server users. Notably, this includes the `_output` directory within add-ons. In this situation, having your web server run as your CLI user may cause the least friction. If you go down any other route, you may need to ensure that your web server can write to your entire XenForo installation; this is not recommended in production.
@@ -99,7 +100,7 @@ You will be asked a number of questions, such as the initial administrator usern
 XF 2.0 is now installed!
 
 ## Переустановка
-Occasionally it may be necessary to reinstall XF2. This is particularly true during the Development Preview stage which does not support upgrading. If you are ready to do a reinstall, download the new files (if applicable) as per the [Downloading XF 2.0](https://xenforo.com/xf2-docs/dev/#downloading-xf-20) section above. It should generally be possible to just merge and overwrite your existing files. If you're doing a full clean re-install, you may want to save a copy of your config.php file or re-create it as per the instructions in the [Creating src/config.php](https://xenforo.com/xf2-docs/dev/#creating-srcconfigphp).
+Occasionally it may be necessary to reinstall XF2. This is particularly true during the Development Preview stage which does not support upgrading. If you are ready to do a reinstall, download the new files (if applicable) as per the [Загрузка XF 2.0](https://xenforo.com/xf2-docs/dev/#downloading-xf-20) section above. It should generally be possible to just merge and overwrite your existing files. If you're doing a full clean re-install, you may want to save a copy of your config.php file or re-create it as per the instructions in the [Создание src/config.php](https://xenforo.com/xf2-docs/dev/#creating-srcconfigphp).
 
 Before uploading the new files, you should delete the contents of your data and internal_data directories.
 
@@ -145,3 +146,6 @@ Rebuilds the master data for the specified add-on, as long as it is rebuildable,
     $ php cmd.php xf:addon-uninstall [addon_id]
 
 Uninstalls the specified add-on, as long as it is uninstallable.
+
+# Примечание
+1. <a name="Prim1"></a>Не рабочие ссылки так и указаны в документации. Если поправят - сообщите.
