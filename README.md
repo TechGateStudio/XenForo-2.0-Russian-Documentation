@@ -8,10 +8,10 @@
 ----------------
 
 **Состояние перевода:**
-* Общее состояние: [#########>-----------------------------------------] 18.8%
+* Общее состояние: [##########>---------------------------------------] 21.4%
 * Начало работы: [##################################################>] 99%
 * Структура плагина: [>--------------------------------------------------] 1%
-* Инструменты разработки: [>--------------------------------------------------] 1%
+* Инструменты разработки: [###############>----------------------------------] 30%
 * Общие понятия: [>--------------------------------------------------] 1%
 * Основы маршрутизации: [>--------------------------------------------------] 1%
 * Основы контроллера: [>--------------------------------------------------] 1%
@@ -54,27 +54,27 @@
     * [Директория _data](/documentation/AddOnStructure.md#part8)
     * [Директория _output](/documentation/AddOnStructure.md#part9)
   * [Класс установки](/documentation/AddOnStructure.md#part10)
-* Инструменты разработки
-  * Режим отладки
-  * Включение режима разработки
-  * Команды разработки
-  * Дополнительные команды плагинов
-    * Создание нового плагина
-    * Экспорт .XML файлов _data
-    * Повышение версии плагина
-    * Синхронизация addon.json с базой данных
-    * Проверка файла addon.json
-    * Запустить отдельный шаг установки
-      * Запустить шаг установки
-      * Запустить шаг обновления
-      * Запустить шаг удаления
-  * Выпуск сборки плагина
-    * Расширеный процесс сборки
-  * Команды разработки
-    * Импорт вывода разработки
-    * Экспорт вывода разработки
-  * Отладка кода
-    * Отладка переменной
+* [Инструменты разработки](/documentation/DevelopmentTools.md#part0)
+  * [Режим отладки](/documentation/DevelopmentTools.md#part1)
+  * [Включение режима разработки](/documentation/DevelopmentTools.md#part2)
+  * [Команды разработки](/documentation/DevelopmentTools.md#part3)
+  * [Дополнительные команды плагинов](/documentation/DevelopmentTools.md#part4)
+    * [Создание нового плагина](/documentation/DevelopmentTools.md#part5)
+    * [Экспорт .XML файлов _data](/documentation/DevelopmentTools.md#part6)
+    * [Повышение версии плагина](/documentation/DevelopmentTools.md#part7)
+    * [Синхронизация addon.json с базой данных](/documentation/DevelopmentTools.md#part8)
+    * [Проверка файла addon.json](/documentation/DevelopmentTools.md#part9)
+    * [Запустить отдельный шаг установки](/documentation/DevelopmentTools.md#part10)
+      * [Запустить шаг установки](/documentation/DevelopmentTools.md#part11)
+      * [Запустить шаг обновления](/documentation/DevelopmentTools.md#part12)
+      * [Запустить шаг удаления](/documentation/DevelopmentTools.md#part13)
+  * [Выпуск сборки плагина](/documentation/DevelopmentTools.md#part14)
+    * [Расширеный процесс сборки](/documentation/DevelopmentTools.md#part15)
+  * [Команды разработки](/documentation/DevelopmentTools.md#part16)
+    * [Импорт вывода разработки](/documentation/DevelopmentTools.md#part17)
+    * [Экспорт вывода разработки](/documentation/DevelopmentTools.md#part18)
+  * [тладка кода](/documentation/DevelopmentTools.md#part19)
+    * [Отладка переменной](/documentation/DevelopmentTools.md#part20)
 * Общие понятия
   * Компоненты поставщика
   * Интегрированная среда разработки (IDE)
