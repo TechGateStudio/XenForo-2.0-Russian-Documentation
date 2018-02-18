@@ -1,8 +1,8 @@
-# Структура плагина
+# <a name="part0"></a>Структура плагина
 
 In previous versions of XF, there were very few standards and conventions surrounding add-on development. We have done a lot to change that in XF 2.0. Let's look at some of the changes:
 
-## Идентификаторы плагина и дополнительные надстройки
+## <a name="part1"></a>Идентификаторы плагина и дополнительные надстройки
 Each installed add-on must have a unique ID, and this ID dictates where on the filesystem that an add-on should store its files. There are two possible formats for an add-on ID.
 
 The first "simple" type should be a single word and not contain any special characters. For example, `Demo`.
@@ -29,13 +29,13 @@ If you have a vendor based add-on ID, e.g. `SomeVendor/Demo`, the files will be 
 
 The add-on ID you choose will also become your class namespace prefix (see [Namespaces](https://xenforo.com/xf2-docs/dev/general-concepts/#namespaces) for more information).
 
-## Рекомендации к строковому формату версии
+## <a name="part2"></a>Рекомендации к строковому формату версии
 XF itself uses a MAJOR.MINOR.PATCH principle (e.g. 2.0.0 for the first stable XF2 release) to its version numbering and we recommend a similar approach is taken towards the versioning of your own add-ons. In basic terms, increment the
 
 * MAJOR version when you make major feature changes, especially changes that break backwards compatibility
 * MINOR version when you add functionality preferably in a backwards compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes
-## Рекомендации к идентификатору версии
+## <a name="part3"></a>Рекомендации к идентификатору версии
 Version IDs for add-ons are basic integers which are used for internal version comparisons. It allows us to more easily detect when one version is older than another. Each version of your add-on should increase the version ID by at least 1, but a convention we use internally for XF itself, is potentially useful also for add-ons. Our version IDs are in the format of aabbccde.
 
 * `aa` represents the major version
@@ -46,10 +46,10 @@ Version IDs for add-ons are basic integers which are used for internal version c
 
 For example, an add-on with version string of 1.7.3 release candidate 4 would have an ID of `1070354`. The final stable release XF2 will have an ID of  `2000070`. Version 1.5.0 Beta 3 of XF had an ID of `1050033`. Stable version `99.99.99` would have an ID of `99999970`... and maybe you should slow down a bit 😉
 
-## Основные файлы и директории плагина
+## <a name="part4"></a>Основные файлы и директории плагина
 There are a number of files and directories within an add-on's directory that have a special purpose and meaning.
 
-### Файл addon.json
+### <a name="part5"></a>Файл addon.json
 `addon.json` is a file which contains a number of pieces of information which are required to help XF 2.0 identify the add-on and display information about it in the Admin CP. At minimum, your `addon.json` file should look like this:
 
     {
@@ -61,25 +61,25 @@ A basic file will be created for you automatically when creating the add-on. It 
 
 Including this file is mandatory.
 
-### Файл hashes.json
+### <a name="part6"></a>Файл hashes.json
 `hashes.json` is the new way to add support for the File health check system, and the best part is -- it's generated automatically!
 
 As part of the build process (more on that later) we will do a quick inventory of all your add-on's files and write the calculated hash of the file contents.
 
-### Файл Setup.php
+### <a name="part7"></a>Файл Setup.php
 `Setup.php` is the new home for any code you require to run during install, upgrade or uninstallation of your add-on.
 
 We will go into more detail about how to create a Setup class [below](https://xenforo.com/xf2-docs/dev/add-on-structure/#setup-class).
 
-### Директория _data
+### <a name="part8"></a>Директория _data
 The `_data` directory is where the master data for your add-on is stored. Each add-on data type will have its own XML file (rather than a single one for all types). The hashes for these files are included inside `hashes.json` so we can ensure that an add-on has complete and consistent data before allowing an add-on to be installed.
 
-### Директория _output
+### <a name="part9"></a>Директория _output
 The `_output` directory is not required for a successful installation of an add-on, and shouldn't be included when releasing the add-on. This directory is purely for development purposes and is only used if development mode is enabled (see [Включение режима разработчика](https://xenforo.com/xf2-docs/dev/development-tools/#enabling-development-mode)).
 
 Each item of add-on data is stored in a separate file. Mostly they are stored as JSON files, but in the case of phrases they are stored as TXT files and for templates they are stored as HTML/CSS/LESS files. All template types are editable in the filesystem directly, and changes made to these files are written back to the database automatically on load.
 
-## Класс установки
+## <a name="part9"></a>Класс установки
 To create a Setup class for your add-on, all you need to do is create a file named `Setup.php` in the root of your add-on directory.
 
 The Setup class should extend `\XF\AddOn\AbstractSetup` which requires, at minimum, to implement `install()`, `upgrade()` and `uninstall()` methods. Here's what a simple add-on Setup class might look like:
