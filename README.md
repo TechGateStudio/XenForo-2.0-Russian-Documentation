@@ -6,7 +6,7 @@
 * Начало работы: [################################################>] 99%
 
 **Содержание**
-* [Начало работы](/documentation/GettingStarted.md#part0)()
+* [Начало работы](/documentation/GettingStarted.md#part0)
   * [Что нового для разработчиков](/documentation/GettingStarted.md#part1)
   * [Начало работы](/documentation/GettingStarted.md#part2)
   * [Загрузка XF 2.0](/documentation/GettingStarted.md#part3)
