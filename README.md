@@ -8,11 +8,11 @@
 ----------------
 
 **Состояние перевода:**
-* Общее состояние: [##########>---------------------------------------] 21.4%
+* Общее состояние: [###########>--------------------------------------] 22.2%
 * Начало работы: [##################################################>] 99%
 * Структура плагина: [>--------------------------------------------------] 1%
 * Инструменты разработки: [###############>----------------------------------] 30%
-* Общие понятия: [>--------------------------------------------------] 1%
+* Общие понятия: [#####>--------------------------------------------] 10%
 * Основы маршрутизации: [>--------------------------------------------------] 1%
 * Основы контроллера: [>--------------------------------------------------] 1%
 * Сущности, Поисковики и Репозитории: [>--------------------------------------------------] 1%
@@ -73,93 +73,93 @@
   * [Команды разработки](/documentation/DevelopmentTools.md#part16)
     * [Импорт вывода разработки](/documentation/DevelopmentTools.md#part17)
     * [Экспорт вывода разработки](/documentation/DevelopmentTools.md#part18)
-  * [тладка кода](/documentation/DevelopmentTools.md#part19)
+  * [Отладка кода](/documentation/DevelopmentTools.md#part19)
     * [Отладка переменной](/documentation/DevelopmentTools.md#part20)
-* Общие понятия
-  * Компоненты поставщика
-  * Интегрированная среда разработки (IDE)
-  * АвтоЗагрузчик
-  * Пространства имён
-  * Короткие имена классов
-  * Расширение классов
-  * Типовые подсказки
-* Основы маршрутизации
-  * Простой пример
-    * Префикс маршрута
-    * Раздел контекста
-    * Контроллер
-    * Экшен контроллера
-    * Более продвинутый пример (форматы маршрута)
-    * Параметры маршрута
-    * Суб-имена
-* Основы контроллера
-  * Вывод
-  * Перенапровление на префикс маршрута
-  * Вывод ошибки
-  * Вывод сообщения
-  * Бросить исключение
-  * Перенаправление на класс маршрута
-  * Изменение ответа на действие контроллера (правильно)
-* Сущности, Поисковики и Репозитории
-  * Поисковики (Finder)
-    * Метод where
-    * Метод whereOr
-    * Метод with
-    * Метод order 
-    * Метод limitByPage
-    * Метод limit
-    * Метод getQuery
-    * Расширение методов поисковика
-  * Система сущностей (Entity)
-    * Структура сущностей
-      * Таблица
-      * Короткое имя
-      * Тип контента
-      * Основной ключ
-      * Колонки
-      * Поведения
-      * Геттеры
-      * Связи
-      * Опции
-    * Жизненный цикл сущностей
-    * Репозитории (Repository)
+* [Общие понятия](/documentation/GeneralConcepts.md#part0)
+  * [Компоненты поставщика](/documentation/GeneralConcepts.md#part1)
+  * [Интегрированная среда разработки (IDE)](/documentation/GeneralConcepts.md#part2)
+  * [АвтоЗагрузчик](/documentation/GeneralConcepts.md#part3)
+  * [Пространства имён](/documentation/GeneralConcepts.md#part4)
+  * [Короткие имена классов](/documentation/GeneralConcepts.md#part5)
+  * [Расширение классов](/documentation/GeneralConcepts.md#part6)
+  * [Типовые подсказки](/documentation/GeneralConcepts.md#part7)
+* [Основы маршрутизации](/documentation/RoutingBasics.md#part0)
+  * [Простой пример](/documentation/RoutingBasics.md#part1)
+    * [Префикс маршрута](/documentation/RoutingBasics.md#part2)
+    * [Раздел контекста](/documentation/RoutingBasics.md#part3)
+    * [Контроллер](/documentation/RoutingBasics.md#part4)
+    * [Экшен контроллера](/documentation/RoutingBasics.md#part5)
+    * [Более продвинутый пример (форматы маршрута)](/documentation/RoutingBasics.md#part6)
+    * [Параметры маршрута](/documentation/RoutingBasics.md#part7)
+    * [Суб-имена](/documentation/RoutingBasics.md#part8)
+* [Основы контроллера](/documentation/ControllerBasics.md#part0)
+  * [Вывод](/documentation/ControllerBasics.md#part1)
+  * [Перенапровление на префикс маршрута](/documentation/ControllerBasics.md#part2)
+  * [Вывод ошибки](/documentation/ControllerBasics.md#part3)
+  * [Вывод сообщения](/documentation/ControllerBasics.md#part4)
+  * [Бросить исключение](/documentation/ControllerBasics.md#part5)
+  * [Перенаправление на класс маршрута](/documentation/ControllerBasics.md#part6)
+  * [Изменение ответа на действие контроллера (правильно)](/documentation/ControllerBasics.md#part7)
+* [Сущности, Поисковики и Репозитории](/documentation/EntitiesFindersAndRepositories.md#part0)
+  * [Поисковики (Finder)](/documentation/EntitiesFindersAndRepositories.md#part1)
+    * [Метод where](/documentation/EntitiesFindersAndRepositories.md#part2)
+    * [Метод whereOr](/documentation/EntitiesFindersAndRepositories.md#part3)
+    * [Метод with](/documentation/EntitiesFindersAndRepositories.md#part4)
+    * [Метод order ](/documentation/EntitiesFindersAndRepositories.md#part5)
+    * [Метод limitByPage](/documentation/EntitiesFindersAndRepositories.md#part6)
+    * [Метод limit](/documentation/EntitiesFindersAndRepositories.md#part7)
+    * [Метод getQuery](/documentation/EntitiesFindersAndRepositories.md#part8)
+    * [Расширение методов поисковика](/documentation/EntitiesFindersAndRepositories.md#part9)
+  * [Система сущностей (Entity)](/documentation/EntitiesFindersAndRepositories.md#part10)
+    * [Структура сущностей](/documentation/EntitiesFindersAndRepositories.md#part11)
+      * [Таблица](/documentation/EntitiesFindersAndRepositories.md#part12)
+      * [Короткое имя](/documentation/EntitiesFindersAndRepositories.md#part13)
+      * [Тип контента](/documentation/EntitiesFindersAndRepositories.md#part14)
+      * [Основной ключ](/documentation/EntitiesFindersAndRepositories.md#part15)
+      * [Колонки](/documentation/EntitiesFindersAndRepositories.md#part16)
+      * [Поведения](/documentation/EntitiesFindersAndRepositories.md#part17)
+      * [Геттеры](/documentation/EntitiesFindersAndRepositories.md#part18)
+      * [Связи](/documentation/EntitiesFindersAndRepositories.md#part19)
+      * [Опции](/documentation/EntitiesFindersAndRepositories.md#part20)
+    * [Жизненный цикл сущностей](/documentation/EntitiesFindersAndRepositories.md#part21)
+    * [Репозитории (Repository)](/documentation/EntitiesFindersAndRepositories.md#part22)
 * [Управление схемой](/documentation/SchemaManagement.md#part0)
   * [Адаптер базы данных](/documentation/SchemaManagement.md#part1)
   * [Управление схемой](/documentation/SchemaManagement.md#part2)
-* Давайте построим плагин
-  * Создание плагина
-  * Создание класса установки
-  * Расширение сущности XF:Forum
-  * Расширение сущности XF:Thread
-  * Создание новой сущности
-  * Изменение формы редактирования форума
-  * Расширение процесса сохранения XF:Forum
-  * Настройка потока, которая будет отображаться автоматически
-  * Создание страницы портала
-  * Создание пункта навигации
-  * Manually featuring (or unfeaturing) threads
-  * Улучшение страницы портала
-  * Создание разрешений и оптимизация
-  * Создание некоторых параметров
-  * Не возможно изменить видимость
-  * Последние штрихи
-  * Сборка плагина
-* Проектирование стилей
-  * Включение режима дизайнера
-  * Включение режима дизайнера для стиля
-  * Отключение режима дизайнера для стиля
-  * Что выводится и где?
-    * Шаблоны
-    * Группы и параметры стилей
-  * Изменение конкретного шаблона 
-  * Другие полезные команды
-    * Экспорт в базу данных
-    * Импорт в файловую систему
-    * Синхронизация шаблонов
-    * Обратный шаблон
-* Приложение: Scotch Box
-  * Установка Scotch Box
-  * Куда идут файлы?
-  * Остановка и перезапуск сервера
-  * Оффициальная документация
-  * Scotch Box Профессионал
+* [Давайте построим плагин](/documentation/LetsBuildAnAddOn.md#part0)
+  * [Создание плагина](/documentation/LetsBuildAnAddOn.md#part1)
+  * [Создание класса установки](/documentation/LetsBuildAnAddOn.md#part2)
+  * [Расширение сущности XF:Forum](/documentation/LetsBuildAnAddOn.md#part3)
+  * [Расширение сущности XF:Thread](/documentation/LetsBuildAnAddOn.md#part4)
+  * [Создание новой сущности](/documentation/LetsBuildAnAddOn.md#part5)
+  * [Изменение формы редактирования форума](/documentation/LetsBuildAnAddOn.md#part6)
+  * [Расширение процесса сохранения XF:Forum](/documentation/LetsBuildAnAddOn.md#part7)
+  * [Настройка потока, которая будет отображаться автоматически](/documentation/LetsBuildAnAddOn.md#part8)
+  * [Создание страницы портала](/documentation/LetsBuildAnAddOn.md#part9)
+  * [Создание пункта навигации](/documentation/LetsBuildAnAddOn.md#part10)
+  * [Manually featuring (or unfeaturing) threads](/documentation/LetsBuildAnAddOn.md#part11)
+  * [Улучшение страницы портала](/documentation/LetsBuildAnAddOn.md#part12)
+  * [Создание разрешений и оптимизация](/documentation/LetsBuildAnAddOn.md#part13)
+  * [Создание некоторых параметров](/documentation/LetsBuildAnAddOn.md#part14)
+  * [Не возможно изменить видимость](/documentation/LetsBuildAnAddOn.md#part15)
+  * [Последние штрихи](/documentation/LetsBuildAnAddOn.md#part16)
+  * [Сборка плагина](/documentation/LetsBuildAnAddOn.md#part17)
+* [Проектирование стилей](/documentation/DesigningStyles.md#part0)
+  * [Включение режима дизайнера](/documentation/DesigningStyles.md#part1)
+  * [Включение режима дизайнера для стиля](/documentation/DesigningStyles.md#part2)
+  * [Отключение режима дизайнера для стиля](/documentation/DesigningStyles.md#part3)
+  * [Что выводится и где?](/documentation/DesigningStyles.md#part4)
+    * [Шаблоны](/documentation/DesigningStyles.md#part5)
+    * [Группы и параметры стилей](/documentation/DesigningStyles.md#part6)
+  * [Изменение конкретного шаблона](/documentation/DesigningStyles.md#part7)
+  * [Другие полезные команды](/documentation/DesigningStyles.md#part8)
+    * [Экспорт в базу данных](/documentation/DesigningStyles.md#part9)
+    * [Импорт в файловую систему](/documentation/DesigningStyles.md#part10)
+    * [Синхронизация шаблонов](/documentation/DesigningStyles.md#part11)
+    * [Обратный шаблон](/documentation/AppendixScotchBox.md#part12)
+* [Приложение: Scotch Box](/documentation/AppendixScotchBox.md#part0)
+  * [Установка Scotch Box](/documentation/AppendixScotchBox.md#part1)
+  * [Куда идут файлы?](/documentation/AppendixScotchBox.md#part2)
+  * [Остановка и перезапуск сервера](/documentation/AppendixScotchBox.md#part3)
+  * [Оффициальная документация](/documentation/AppendixScotchBox.md#part4)
+  * [Scotch Box Профессионал](/documentation/AppendixScotchBox.md#part5)
