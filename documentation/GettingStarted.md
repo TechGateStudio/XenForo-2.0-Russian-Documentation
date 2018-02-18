@@ -56,7 +56,6 @@
 После извлечения вы увидите каталог с именем `upload`. Вам нужно зайти в этот каталог и загрузить файлы и каталоги в корневой каталог вашего сервера. Обычно это будет в каталоге с именем `public_html`,` htdocs` или `www`.
 
 ## <a name="part9"></a>Создание src/config.php
-If using the CLI to install XF 2.0, you will need to create the config.php file manually. To do this, enter the `src` directory within the XF 2.0 files you uploaded to your server. Create a new file named config.php and populate it with the host, port, username, password and database name for your MySQL server.
 Если вы используете CLI для установки XF 2.0, вам нужно будет создать файл `config.php` вручную. Для этого войдите каталог `src` в файлах XF 2.0, загруженные на ваш сервер. Создайте новый файл с именем `config.php` и заполните его именем хоста, порта, имени пользователя, пароля и базы данных для вашего сервера MySQL.
 > **Примечание**
 > Убедитесь, что вы создали файл конфигурации в каталоге `src`. Каталог `library` используется только для устаревших целей.
