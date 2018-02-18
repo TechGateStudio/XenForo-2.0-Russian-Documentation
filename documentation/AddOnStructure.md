@@ -79,7 +79,7 @@ The `_output` directory is not required for a successful installation of an add-
 
 Each item of add-on data is stored in a separate file. Mostly they are stored as JSON files, but in the case of phrases they are stored as TXT files and for templates they are stored as HTML/CSS/LESS files. All template types are editable in the filesystem directly, and changes made to these files are written back to the database automatically on load.
 
-## <a name="part9"></a>Класс установки
+## <a name="part10"></a>Класс установки
 To create a Setup class for your add-on, all you need to do is create a file named `Setup.php` in the root of your add-on directory.
 
 The Setup class should extend `\XF\AddOn\AbstractSetup` which requires, at minimum, to implement `install()`, `upgrade()` and `uninstall()` methods. Here's what a simple add-on Setup class might look like:
