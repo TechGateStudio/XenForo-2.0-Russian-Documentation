@@ -143,16 +143,18 @@ This will export all data currently associated to your add-on in the database to
 Для работы с XF2 должно быть возможно настроить ваш любимый инструмент отладчика (XDebug, Zend Debugger и т.д.). Хотя иногда код отладки может быть как рудиментарным, так и быстро видимым, какое значение (или тип значения) хранится в переменной в данный момент времени.
 
 ### <a name="part20"></a>Отладка переменной
-PHP of course has a tool built-in to handle this. You'll likely know it as `var_dump()`. XF ships with two replacements for this:
+PHP, конечно, имеет встроенный инструмент для отладки. Вероятно, вы знаете его как `var_dump()`. Для этого XF поставляется с двумя заменами:
+```php
+\XF::dump($var);
+\XF::dumpSimple($var);
+```
+Простая версия в основном просто выгружает значение переменной в виде обычного текста. Например, если вы просто используете его для сброса значения массива, вы увидите вывод в верхней части страницы следующим образом:
+```
+array(2) {
+	["user_id"] => int(1)
+	["username"] => string(5) "Admin"
+}
+```
+Это фактически тот же результат, что и стандартный var_dump, но слегка измененный для удобочитаемости и обернутый внутри тегов `<pre>`, чтобы обеспечить сохранение пробелов при рендеринге.
 
-    \XF::dump($var);
-    \XF::dumpSimple($var);
-The simple version mostly just dumps out the value of a variable in plain text. For example, if you just use it to dump the value of an array, you will see an output at the top of the page like this:
-
-    array(2) {
-        ["user_id"] => int(1)
-        ["username"] => string(5) "Admin"
-    }
-This is actually the same output as a standard var_dump, but slightly modified for readability and wrapped inside `<pre>` tags to ensure whitespace is maintained when rendering.
-
-The alternative is actually a component named VarDumper from the Symfony project. It outputs HTML, CSS and JS to create a much more functional and potentially easier to read output. It allows you to collapse certain sections, and for certain values which can output a considerable amount of data, such as objects, it can collapse those sections automatically.
+Альтернативой на самом деле является компонент VarDumper из проекта Symfony. Он выводит HTML, CSS и JS для создания гораздо более функционального и потенциально более легкого для чтения вывода. Он позволяет свернуть определенные разделы, а для определенных значений, которые могут выводить значительный объем данных, таких как объекты, он может автоматически свернуть эти разделы.
