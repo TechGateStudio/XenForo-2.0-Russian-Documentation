@@ -51,12 +51,13 @@ There are a number of files and directories within an add-on's directory that ha
 
 ### <a name="part5"></a>Файл addon.json
 `addon.json` is a file which contains a number of pieces of information which are required to help XF 2.0 identify the add-on and display information about it in the Admin CP. At minimum, your `addon.json` file should look like this:
-
-    {
-        "title": "My Add-on by Some Company",
-        "version_string": "2.0.0",
-        "version_id": 2000070
-    }
+```json
+{
+	"title": "My Add-on by Some Company",
+	"version_string": "2.0.0",
+	"version_id": 2000070
+}
+```
 A basic file will be created for you automatically when creating the add-on. It supports a lot more besides the example above, but we'll go into that in more detail later.
 
 Including this file is mandatory.
@@ -83,13 +84,13 @@ Each item of add-on data is stored in a separate file. Mostly they are stored as
 To create a Setup class for your add-on, all you need to do is create a file named `Setup.php` in the root of your add-on directory.
 
 The Setup class should extend `\XF\AddOn\AbstractSetup` which requires, at minimum, to implement `install()`, `upgrade()` and `uninstall()` methods. Here's what a simple add-on Setup class might look like:
+```
+<?php
 
-    <?php
+namespace Demo;
 
-    namespace Demo;
-
-    class Setup extends \XF\AddOn\AbstractSetup
-    {
+class Setup extends \XF\AddOn\AbstractSetup
+{
     public function install(array $stepParams = [])
     {
         $this->schemaManager()->createTable('xf_demo', function(\XF\Db\Schema\Create $table)
@@ -114,4 +115,5 @@ The Setup class should extend `\XF\AddOn\AbstractSetup` which requires, at minim
         $this->schemaManager()->dropTable('xf_demo');
     }
 }
+```
 The Setup class also supports running each of the actions in different steps. To implement this behavior your Setup class can use the `StepRunnerInstallTrait`, `StepRunnerUpgradeTrait` and/or `StepRunnerUninstallTrait` traits. These implement the required methods automatically, and you just need to add the relevant steps, e.g. `installStep1()`, `upgrade1000170Step1()`, `upgrade1000170Step2()` and `uninstallStep1()`, where `1000170` etc. in the upgrade methods are the add-on version IDs (see [Рекомендуемый формат версии](https://xenforo.com/xf2-docs/dev/add-on-structure/#recommended-version-id-format)).
