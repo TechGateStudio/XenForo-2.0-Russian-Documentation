@@ -1,56 +1,56 @@
 # <a name="part0"></a>Структура плагина
 
-In previous versions of XF, there were very few standards and conventions surrounding add-on development. We have done a lot to change that in XF 2.0. Let's look at some of the changes:
+В предыдущих версиях XF было очень мало стандартов и соглашений, связанных с разработкой дополнений. Мы многое сделали, чтобы изменить это в XF 2.0. Давайте рассмотрим некоторые изменения:
 
 ## <a name="part1"></a>Идентификаторы плагина и дополнительные надстройки
-Each installed add-on must have a unique ID, and this ID dictates where on the filesystem that an add-on should store its files. There are two possible formats for an add-on ID.
+Каждый установленный надстройщик должен иметь уникальный идентификатор, и этот идентификатор определяет, где в файловой системе надстройка должна хранить свои файлы. Существует два возможных формата для дополнительного ID.
 
-The first "simple" type should be a single word and not contain any special characters. For example, `Demo`.
+Первый «простой» тип должен быть одним словом и не содержать каких-либо специальных символов. Например,`Demo`.
 
-Simple add-on IDs must adhere to the following rules:
+Простые добавочные идентификаторы должны соответствовать следующим правилам:
 
-* Must only contain a-z or A-Z
-* Can contain 0-9 but not at the start of the ID
-* Can not contain any special characters such as slashes, dashes or underscores
+* Должен содержать только a-z или A-Z
+* Может содержать 0-9, но не в начале идентификатора
+* Не может содержать никаких специальных символов, таких как слэши, тире или символы подчеркивания
 
-The second contains a vendor prefix, so if you release add-ons under a specific brand or company, the add-on ID can indicate that. For example, `SomeVendor/Demo`.
+Второй содержит префикс поставщика, поэтому, если вы выпускаете надстройки под конкретным брендом или компанией, это может указывать дополнительный идентификатор. Например, `SomeVendor/Demo`.
 
-The vendor type add-on ID should adhere to the following rules:
+Идентификатор надстройки типа поставщика должен придерживаться следующих правил:
 
-* Must only contain a-z or A-Z
-* Can contain a single `/` character but not at the start or the end
-* Can contain 0-9 but not at the start of either part of the add-on ID
+* Должен содержать только a-z или A-Z
+* Может содержать один символ `/`, но не в начале или в конце
+* Может содержать 0-9, но не в начале любой части надстройки ID
 
-Once you have decided what your add-on ID is, we know exactly where the files for this add-on will be stored. All XF 2.0 add-ons are stored within a subdirectory of the `src/addons` directory.
+После того, как вы определили, что такое дополнительный идентификатор, мы точно знаем, где будут храниться файлы для этого надстройки. Все дополнения XF 2.0 хранятся в подкаталоге каталога `src / addons`.
 
-If you have a simple add-on ID, e.g. `Demo`, the files for your add-on will be stored in the following location:  src/addons/Demo.
+Если у вас есть простой дополнительный код, например, `Demo`, файлы для вашего дополнения будут храниться в следующем расположении: src/addons/Demo.
 
-If you have a vendor based add-on ID, e.g. `SomeVendor/Demo`, the files will be stored in the following location:  `src/addons/SomeVendor/Demo`.
+Если у вас есть идентификатор надстройки на основе поставщика, например. `SomeVendor/Demo`, файлы будут храниться в следующем расположении:`src/addons/SomeVendor/Demo`.
 
-The add-on ID you choose will also become your class namespace prefix (see [Namespaces](https://xenforo.com/xf2-docs/dev/general-concepts/#namespaces) for more information).
+Выбранный дополнительный идентификатор также станет вашим префиксом пространства имен классов (см. [Пространства имен] (/documentation/GeneralConcepts.md#part4) для получения дополнительной информации).
 
 ## <a name="part2"></a>Рекомендации к строковому формату версии
-XF itself uses a MAJOR.MINOR.PATCH principle (e.g. 2.0.0 for the first stable XF2 release) to its version numbering and we recommend a similar approach is taken towards the versioning of your own add-ons. In basic terms, increment the
+Сам XF использует принцип MAJOR.MINOR.PATCH (например, 2.0.0 для первой стабильной версии XF2) для своей нумерации версий, и мы рекомендуем использовать аналогичный подход к версированию собственных надстроек. В основных терминах
 
-* MAJOR version when you make major feature changes, especially changes that break backwards compatibility
-* MINOR version when you add functionality preferably in a backwards compatible manner, and
-* PATCH version when you make backwards-compatible bug fixes
+* ОСНОВНАЯ версия, когда вы делаете основные изменения функций, особенно изменения, которые нарушают обратную совместимость
+* Версия MINOR, когда вы добавляете функциональность предпочтительно в обратную совместимость, и
+* Версия PATCH, когда вы делаете исправления ошибок с обратной совместимостью
 ## <a name="part3"></a>Рекомендации к идентификатору версии
-Version IDs for add-ons are basic integers which are used for internal version comparisons. It allows us to more easily detect when one version is older than another. Each version of your add-on should increase the version ID by at least 1, but a convention we use internally for XF itself, is potentially useful also for add-ons. Our version IDs are in the format of aabbccde.
+Идентификаторы версий для надстроек являются основными целыми числами, которые используются для сравнения внутренних версий. Это позволяет нам более легко обнаруживать, когда одна версия старше другой. Каждая версия вашего дополнения должна увеличивать идентификатор версии как минимум на 1, но соглашение, которое мы используем внутри самой XF, потенциально полезно также для надстроек. Наши идентификаторы версий находятся в формате aabbccde.
 
-* `aa` represents the major version
-* `bb` represents the minor version
-* `cc` represents the patch version
-* `d` represents the state, e.g. `1` for alpha releases, `3` for beta releases, `5` for release candidates and `7` for stable releases
-* `e` represents the state version
+* `aa` представляет основную версию
+* `bb` представляет второстепенную версию
+* `cc` представляет версию патча
+* `d` представляет состояние, например. `1` для альфа-релизов,` 3` для бета-релизов, `5` для кандидатов на выпуск и` 7` для стабильных выпусков
+* `e` представляет версию состояния...
 
-For example, an add-on with version string of 1.7.3 release candidate 4 would have an ID of `1070354`. The final stable release XF2 will have an ID of  `2000070`. Version 1.5.0 Beta 3 of XF had an ID of `1050033`. Stable version `99.99.99` would have an ID of `99999970`... and maybe you should slow down a bit 😉
+Например, надстройка с версией версии 1.7.3, релиз-кандидат 4 будет иметь идентификатор `1070354`. Окончательный стабильный релиз XF2 будет иметь идентификатор `2000070`. Версия 1.5.0 Beta 3 из XF имела идентификатор `1050033`. Стабильная версия `99.99.99` будет иметь идентификатор` 99999970` ... и, может быть, вам нужно немного замедлить 😉
 
 ## <a name="part4"></a>Основные файлы и директории плагина
-There are a number of files and directories within an add-on's directory that have a special purpose and meaning.
+В каталоге дополнительного каталога есть несколько файлов и каталогов, которые имеют особую цель и значение.
 
 ### <a name="part5"></a>Файл addon.json
-`addon.json` is a file which contains a number of pieces of information which are required to help XF 2.0 identify the add-on and display information about it in the Admin CP. At minimum, your `addon.json` file should look like this:
+`addon.json` - это файл, содержащий несколько фрагментов информации, которые необходимы, чтобы помочь XF 2.0 идентифицировать надстройку и отобразить информацию об этом в Admin CP. Как минимум, ваш файл `addon.json` должен выглядеть так:
 ```json
 {
 	"title": "My Add-on by Some Company",
@@ -58,33 +58,33 @@ There are a number of files and directories within an add-on's directory that ha
 	"version_id": 2000070
 }
 ```
-A basic file will be created for you automatically when creating the add-on. It supports a lot more besides the example above, but we'll go into that in more detail later.
+Базовый файл будет создан для вас автоматически при создании надстройки. Он поддерживает намного больше, чем пример выше, но мы поговорим об этом более подробно позже.
 
-Including this file is mandatory.
+Включение этого файла является обязательным.
 
 ### <a name="part6"></a>Файл hashes.json
-`hashes.json` is the new way to add support for the File health check system, and the best part is -- it's generated automatically!
+`hashes.json` - это новый способ добавить поддержку системы проверки работоспособности файлов, и лучшая часть - она генерируется автоматически!
 
-As part of the build process (more on that later) we will do a quick inventory of all your add-on's files and write the calculated hash of the file contents.
+Как часть процесса сборки (подробнее об этом позже), мы быстро выполним инвентаризацию всех ваших файлов надстройки и напишем вычисленный хэш содержимого файла.
 
 ### <a name="part7"></a>Файл Setup.php
-`Setup.php` is the new home for any code you require to run during install, upgrade or uninstallation of your add-on.
+`Setup.php` - это новый дом для любого кода, который требуется запускать во время установки, обновления или удаления вашего дополнения.
 
-We will go into more detail about how to create a Setup class [below](https://xenforo.com/xf2-docs/dev/add-on-structure/#setup-class).
+Мы поговорим подробнее о том, как создать класс установки [ранее](/documentation/AddOnStructure.md#part7).
 
 ### <a name="part8"></a>Директория _data
-The `_data` directory is where the master data for your add-on is stored. Each add-on data type will have its own XML file (rather than a single one for all types). The hashes for these files are included inside `hashes.json` so we can ensure that an add-on has complete and consistent data before allowing an add-on to be installed.
+В каталоге `_data` хранятся основные данные для вашего надстроек. Каждый дополнительный тип данных будет иметь свой собственный XML-файл (а не один для всех типов). Хэши для этих файлов включены внутри `hashes.json`, поэтому мы можем гарантировать, что надстройка содержит полные и согласованные данные, прежде чем разрешить установку надстройки.
 
 ### <a name="part9"></a>Директория _output
-The `_output` directory is not required for a successful installation of an add-on, and shouldn't be included when releasing the add-on. This directory is purely for development purposes and is only used if development mode is enabled (see [Включение режима разработчика](https://xenforo.com/xf2-docs/dev/development-tools/#enabling-development-mode)).
+Каталог `_output` не требуется для успешной установки надстройки и не должен включаться при выпуске надстройки. Этот каталог предназначен исключительно для целей разработки и используется только в том случае, если включен режим разработки (см. [Включение режима разработчика](https://xenforo.com/xf2-docs/dev/development-tools/#enabling-development-mode)).
 
-Each item of add-on data is stored in a separate file. Mostly they are stored as JSON files, but in the case of phrases they are stored as TXT files and for templates they are stored as HTML/CSS/LESS files. All template types are editable in the filesystem directly, and changes made to these files are written back to the database automatically on load.
+Каждый элемент дополнительных данных хранится в отдельном файле. В основном они хранятся в виде файлов JSON, но в случае фраз они хранятся в виде файлов TXT, а для шаблонов они хранятся в виде файлов HTML/CSS/LESS. Все типы шаблонов редактируются непосредственно в файловой системе, а изменения, внесенные в эти файлы, автоматически записываются в базу данных при загрузке.
 
 ## <a name="part10"></a>Класс установки
-To create a Setup class for your add-on, all you need to do is create a file named `Setup.php` in the root of your add-on directory.
+Чтобы создать класс установки для вашего надстройки, все, что вам нужно сделать, это создать файл с именем `Setup.php` в корне вашего каталога дополнений.
 
-The Setup class should extend `\XF\AddOn\AbstractSetup` which requires, at minimum, to implement `install()`, `upgrade()` and `uninstall()` methods. Here's what a simple add-on Setup class might look like:
-```
+Класс Setup должен расширять `\XF\AddOn\AbstractSetup`, который требует, как минимум, для реализации методов `install()`, `upgrade()` и `uninstall()`. Вот что может выглядеть простой класс установки надстройки:
+```php
 <?php
 
 namespace Demo;
@@ -116,4 +116,4 @@ class Setup extends \XF\AddOn\AbstractSetup
     }
 }
 ```
-The Setup class also supports running each of the actions in different steps. To implement this behavior your Setup class can use the `StepRunnerInstallTrait`, `StepRunnerUpgradeTrait` and/or `StepRunnerUninstallTrait` traits. These implement the required methods automatically, and you just need to add the relevant steps, e.g. `installStep1()`, `upgrade1000170Step1()`, `upgrade1000170Step2()` and `uninstallStep1()`, where `1000170` etc. in the upgrade methods are the add-on version IDs (see [Рекомендуемый формат версии](https://xenforo.com/xf2-docs/dev/add-on-structure/#recommended-version-id-format)).
+Класс Setup также поддерживает выполнение каждого из действий в разных шагах. Чтобы реализовать это поведение, ваш класс Setup может использовать свойства «StepRunnerInstallTrait», «StepRunnerUpgradeTrait» и/или «StepRunnerUninstallTrait». Они автоматически реализуют требуемые методы, и вам просто нужно добавить соответствующие шаги, например. `installStep1()`, `upgrade1000170Step1()`,  `upgrade1000170Step2()` и `uninstallStep1()`, где `1000170` и т. д. в методах обновления являются дополнительными идентификаторами версий (см. [Рекомендуемый формат версии](/master/documentation/AddOnStructure.md#part3)).
