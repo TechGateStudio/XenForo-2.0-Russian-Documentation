@@ -11,7 +11,7 @@
 
 **Состояние перевода:**
 
-|Общее состояние					|53,63%	|Уточнение состояния	|
+|Общее состояние					|53,72%	|Уточнение состояния	|
 |:--								|:--	|:--					|
 |Начало работы						|99%	|Уточнение деталей.		|
 |Структура плагина					|97%	|Обработка перевода.	|
@@ -19,7 +19,7 @@
 |Общие понятия						|97%	|Обработка перевода.	|
 |Основы маршрутизации				|1%		|Английская версия.		|
 |Основы контроллера					|1%		|Английская версия.		|
-|Сущности, Поисковики и Репозитории	|0%		|Пустая страница.		|
+|Сущности, Поисковики и Репозитории	|1%		|Английская версия.		|
 |Управление схемой					|99%	|Уточнение деталей.		|
 |Давайте построим плагин			|0%		|Пустая страница.		|
 |Проектирование стилей				|0%		|Пустая страница.		|
@@ -110,7 +110,7 @@
     * [Метод where](/documentation/EntitiesFindersAndRepositories.md#part2)
     * [Метод whereOr](/documentation/EntitiesFindersAndRepositories.md#part3)
     * [Метод with](/documentation/EntitiesFindersAndRepositories.md#part4)
-    * [Метод order ](/documentation/EntitiesFindersAndRepositories.md#part5)
+    * [Метод order](/documentation/EntitiesFindersAndRepositories.md#part5)
     * [Метод limitByPage](/documentation/EntitiesFindersAndRepositories.md#part6)
     * [Метод limit](/documentation/EntitiesFindersAndRepositories.md#part7)
     * [Метод getQuery](/documentation/EntitiesFindersAndRepositories.md#part8)
@@ -127,7 +127,7 @@
       * [Связи](/documentation/EntitiesFindersAndRepositories.md#part19)
       * [Опции](/documentation/EntitiesFindersAndRepositories.md#part20)
     * [Жизненный цикл сущностей](/documentation/EntitiesFindersAndRepositories.md#part21)
-    * [Репозитории (Repository)](/documentation/EntitiesFindersAndRepositories.md#part22)
+  * [Репозитории (Repository)](/documentation/EntitiesFindersAndRepositories.md#part22)
 * [Управление схемой](/documentation/SchemaManagement.md#part0)
   * [Адаптер базы данных](/documentation/SchemaManagement.md#part1)
   * [Управление схемой](/documentation/SchemaManagement.md#part2)
