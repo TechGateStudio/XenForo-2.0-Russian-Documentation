@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\documentation"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\documentation\\AddOnStructure.md",
   "PreviewInSolutionExplorer": false
 }
