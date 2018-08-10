@@ -1,11 +1,11 @@
 ﻿
 # <a name="part0"></a>Давайте построим плагин
-For some people, getting stuck straight into a project is the best way to learn, and the aim is that in the following sections you will learn how to build an add-on, from scratch. Be prepared; this isn't a simple 'Hello world' type demo. This is actually a fairly full featured demo add-on which covers a number of concepts within XF2.
+Для некоторых людей, застрять в разработке проекта это лучший способ получить знания, наша цель - научить вас разрабатывать плагины с нуля. Будьте готовы - это не пример, по типу 'Hello World'. Это полноценный демо-плагин, который охватывает множество концепций XF2.
 
-The add-on we're going to build will allow users with the appropriate permission to "feature" a thread, and allow that thread to be displayed on a new page. We'll even set up a process which automatically features threads in specific forums. We will use a new route for this named portal and eventually set that as the index page route and set the "Home" tab to be selected when viewing that page.
+Плагин, который мы будем разрабатывать, позволит пользователям с соответствующим правом продвигать темы, такие темы мы отобразим на отдельной странице. Мы даже настроим процесс, который будет автоматически продвигать темы из выбранных форумов. Мы будем использовать роутинг, названный `portal` и в конечном итоге установим его в качестве роутинга главной страницы и сделаем вкладку "Home" активной при просмотре этой страницы.
 
 ## <a name="part1"></a>Создание плагина
-Throughout the add-on we will use the add-on ID of Demo/Portal. The first thing we need to do is create the add-on, for this we need to open a command prompt / shell / terminal window, change the directory to your XF installation root (where cmd.php is located) and run the following command, and enter the responses displayed below:
+Идентификатор нашего плагина - `Demo/Portal`. Первое, что мы сделаем - создадим плагин. Для этого, нам нужно открыть командную строку/терминал, перейти в директорию с вашей установкой XF (где находится cmd.php), выполнить следующую команду и ответить на вопросы так же, как внизу:
 ```
 $ php cmd.php xf-addon:create
 
@@ -29,10 +29,10 @@ Does your Setup need to support running multiple steps? (y/n) y
 
 The Setup.php file was successfully written out to ../src/addons/Demo/Portal/Setup.php
 ```
-The add-on has now been created, you will now find that you have a new directory in the `src/addons` directory, and you will find the add-on in the "Installed add-ons" list of the Admin CP.
+Плагин создан, вы можете найти его директорию в каталоге `src/addons`, также он отображается в списке установленных плагинов в АСР.
 
 
-One of the files that has been created is the addon.json file, which currently looks like this:
+Один из созданных файлов - `addon.json`, сейчас он выглядит так:
 ```json
 {
     "title": "Demo - Portal",
@@ -41,7 +41,7 @@ One of the files that has been created is the addon.json file, which currently l
 }
 ```
 
-Let's expand on that a little bit:
+Давайте расширим его немного:
 ```json
 {
     "title": "Demo - Portal",
@@ -52,10 +52,10 @@ Let's expand on that a little bit:
     "icon": "fa-code"
 }
 ```
-This is still pretty basic, but we have now added a description, the developer's name and specified that we want to display an icon. The icon can either be a path (relative to your add-on root) or the name of a [FontAwesome](http://fontawesome.io/icons/) icon as we've done here.
+Это всё ещё довольно базовый вариант, но мы добавили описание, имя разработчика и иконку. Иконку можно указать в виде путя к файлу (относительно корня плагина) или имя [FontAwesome](http://fontawesome.io/icons/)-иконки, как в примере выше.
 
 ## <a name="part2"></a>Создание класса установки
-Well, strictly speaking, the class has already been created and written out to `Setup.php` but right now it doesn't really do anything. We've basically got a skeleton class for it which looks like this:
+Собственно, класс уже создан и записан в файл `Setup.php`, но сейчас он ничего не делает. Мы получили базовый скелет, который выглядит следующим образом:
 ```php
 <?php
 
@@ -72,9 +72,9 @@ class Setup extends \XF\AddOn\AbstractSetup
 }
 ```
 
-We talked a little bit already about the Setup class. We're going to be breaking the install, upgrade and uninstall processes into separate steps.
+Мы уже говорили немного о классе установки. Мы собираемся поделить процесс установки, обновления и удаления на отдельные шаги.
 
-The StepRunner traits here are going to handle the process of cycling through all of the available steps, so all we have to do is start creating those steps. We'll start by adding some code to create a new column in the `xf_forum` table:
+Трейты StepRunner предназначены для обработки процесса прохождения всех доступных шагов, всё что нам остается - создать эти самые шаги. Начнём с добавления кода, который создаст новый столбец в таблице `xf_forum`:
 ```php
 <?php
 
@@ -99,9 +99,9 @@ class Setup extends \XF\AddOn\AbstractSetup
 }
 ```
 
-This column is being added to the `xf_forum` table so that we can set certain forums up to have threads automatically featured when they are created. The naming here is significant; columns added to core XF tables should always be prefixed. This serves two important purposes. The first being that there is less risk of conflicts happening with duplicate column names, in case XF or another add-on has reason to add that column in the future. The second being that it helps more easily identify which columns belong to which add-ons in case some issues arise in the future.
+Этот столбец будет добавлен в таблицу `xf_forum` для того, чтобы мы могли настроить автоматическое добавление тем в портал из определенных разделов. Название имеет большое значение; столбцы добавленные в стандартные таблицы XF должны иметь префикс. Это нужно для двух вещей. Во-первых, уменьшается риск конфликтов из-за повторяющихся имён столбцов. Во-вторых, это помогает определить к камому плагину относится столбец, в случае вощникновения проблем.
 
-While we're here, we might as well add another step to the installer. For brevity, we'll just display the new code, rather than the entire class. It should be placed directly below the `installStep1()` method:
+Пока мы здесь, можем добавить ещё немного кода в наш установщик. Для краткости, мы покажем вам новый код, вместо кода целого класса. Он должен находится под кодом метода `installStep1()`:
 ```php
 public function installStep2()
 {
@@ -111,9 +111,9 @@ public function installStep2()
     });
 }
 ```
-This step, similar to the step above, will add a new column this time to the `xf_thread` table. We'll use this column as a cached value to quickly identify whether a thread is featured or not, without having to perform additional queries or a lookup against the `xf_demo_portal_featured_thread` table.
+Этот шаг, как и шаг выше, добавит новый столбец, на этот раз в таблицу `xf_thread`.Мы будем использовать этот столбец в качестве кэшируемого значения, чтобы быстро определять добавлена тема в портал или нет, без необходимости выполнять  дополнительные запросы или поиск по таблицу xf_demo_portal_featured_thread`.
 
-Speaking of which, we should add that table now. This time directly below `installStep2()`:
+Кстати говоря, сейчас мы добавим эту таблицу. На этот раз прямо под `installStep2()`:
 ```php
 public function installStep3()
 {
@@ -126,11 +126,11 @@ public function installStep3()
 }
 ```
 
-This step is going to create the new table. This table will be used to keep a log of all of the threads that have been featured, and when they were featured.
+Этот шаг создаст новую таблицу. Эта таблица будет использоваться для ведения журнала всех тем, которые были добавлены в портал и когда они были добавлены.
 
-The same principles apply here in terms of naming. A significant difference is that all tables should additionally be prefixed with `xf_`. The reason for this is so that if a clean XF install is performed, we can remove all tables with the `xf_` prefix, including those created by add-ons.
+Для таблиц мы применяем те же принципы именования. Единственное отличие в том, что все таблицы должны иметь префикс `xf_`. Это нужно для того, чтобы при выполнении чистой установки, XF удалил все таблицы с префиксом `xf_`, в том числе созданные плагинами.
 
-One of the simplest things to forget when adding the code which adds various schema changes is to forget to apply the schema changes yourself. You can run install/upgrade steps using a CLI command. In this case, execute the following commands:
+Одна из вещей, про которую следует забыть при добавлении кода, изменяющего схему - ручное редактирование схемы. Вы можете выполнять шаги установки\обновления с помощью CLI команд. В этом случае выполните следующие команды:
 ```
 $ php cmd.php xf-addon:install-step Demo/Portal 1
 $ php cmd.php xf-addon:install-step Demo/Portal 2
