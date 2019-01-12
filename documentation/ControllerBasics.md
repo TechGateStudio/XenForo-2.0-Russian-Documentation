@@ -1,16 +1,16 @@
 # <a name="part0"></a>Основы контроллеров
-At a basic level, Controllers are the code that is executed when you visit a page within XF. Controllers are generally responsible for handling user input and passing that user input to the appropriate place which, generally, would be to perform some sort of database action (Model) or load visual content (View).
+На базовом уровне контроллеры-это код, который выполняется при посещении страницы в XF. Контроллеры обычно отвечают за обработку пользовательского ввода и передачу этого ввода в соответствующее место, которое, как правило, должно выполнять какое-либо действие (модель) базы данных или загружать визуальное содержимое (представление).
 
-When a user clicks a link, the requested URL is routed to a specific controller and controller action. Смотрите [Основы маршрутизации](/documentation/RoutingBasics.md#part0). For example, in XF if you click a URL like `index.php?conversations/add` you will be routed to the XF`\Pub\Controller\Conversation` controller and to the add action.
+Когда пользователь переходит по ссылке, запрошенный URL-адрес направляется на определенный контроллер и действие контроллера. Смотрите [Основы маршрутизации](/documentation/RoutingBasics.md#part0). Например, в XF, если посетить URL-адрес, как `index.php?conversations/add` вы будете направлены на контоллер XF`\Pub\Controller\Conversation` и на метод(action) `add`.
 
-If you look at this class in the file system (see [АвтоЗагрузчик](/documentation/GeneralConcepts.md#part3) for a description of how classes and file paths map to each other) you will notice that there are a number of methods named with a prefix of `action`. All of these methods indicate a specific controller action. So, to see the code involved when viewing the conversations/add page mentioned above, look in this file for `public function actionAdd()`.
+Если вы посмотрите на этот класс в файловой системе (see [АвтоЗагрузчик](/documentation/GeneralConcepts.md#part3) for a description of how classes and file paths map to each other) вы заметите, что методы именуются с префиксом `action`. Все эти методы указывают на определенное действие контроллера. Таким образом, чтобы увидеть метод, участвующий при просмотре страницы `conversations/add` page mentioned above, смотрите `public function actionAdd()`.
 
-XF controllers are responsible for returning a reply object which generally consist of one of the following types:
+Контроллеры XF возвращают объект ответа, который может быть следующих типов:
 
-## <a name="part1"></a>Ответ "Просмотр"
-This is one of the most common replies you will deal with during XF development. A controller which returns a view reply will usually require up to three arguments to be passed in. A view class (more on that below), a template name, and an array of `$viewParams` which is the data that should be available to the template.
+## <a name="part1"></a>Ответ "Представление(view)"
+Это один из наиболее распространенных ответов, с которым вы будете иметь дело во время разработки XF. Контроллер, который возвращает ответ представления(view), обычно требует передачу трех аргументов. Класс представления (подробнее об этом ниже), имя шаблона и массив `$viewParams` - это данные, которые будут доступны в шаблоне.
 
-Here's a typical example of a controller action which returns a View reply:
+Это пример действия контроллера, который возвращает ответ представления:
 ```php
 public function actionExample()
 {
@@ -24,18 +24,18 @@ public function actionExample()
     return $this->view('Demo:Example', 'demo_example', $viewParams);
 }
 ```
-The first argument is the short class name for a specific View class. This class may or may not exist (often it won't need to exist, we'll cover view classes more later) but it should have a roughly unique name for the controller and action. As with other [Короткие имена классов](/documentation/GeneralConcepts.md#part5), the particular short class name above will resolve to `Demo\Pub\View\Example`. Again, `Pub` is inferred automatically from the controller type.
+Первый аргумент - это короткое имя класса для определенного класса представления. Этот класс может существовать или не существовать (часто он не должен существовать, мы рассмотрим классы представлений позже), но он должен иметь уникальное имя для контроллера и действия. As with other [Короткие имена классов](/documentation/GeneralConcepts.md#part5), the particular short class name above will resolve to `Demo\Pub\View\Example`. Again, `Pub` is inferred automatically from the controller type.
 
-The second argument is the template name. In this case, we're looking for a template named `demo_example`.
+Второй аргумент - имя шаблона. В этом случае мы ищем шаблон с именем `demo_example`.
 
-The third argument is an array of template parameters/variables that should be available to the view. This array should generally be `key => value` pairs. The above example is passing two template params to the template. The `key` part of the array indicates the name of the variable available within the template. The `value` part of the array indicates the value.
+Третий аргумент представляет собой массив параметров/переменных шаблона, которые доступны представлению(view). Этот массив должен быть парой `key => value` (`ключ => значение`). В приведенном выше примере в шаблон передаются два параметра. Ключ (`key`) указывает имя переменной, доступной в шаблоне. Значение массива (`value`) указывает на значение параметра.
 
-So, if we had the following contents in the `demo_example` template:
+Итак, если бы в шаблоне `demo_example` было следующее содержимое:
 
 ```php
 {$hello} {$world}
 ```
-The template would output the following:
+Шаблон выведет следующее:
 
 ```Hello world!```
 ## <a name="part2"></a>Ответ "Перенаправление"
