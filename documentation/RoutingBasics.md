@@ -1,60 +1,60 @@
 # <a name="part0"></a>Основы маршрутизации
-Within a PHP application, like XF2, we need a way of being able to take a user request for a specific URL, understand which controller, action and what data that URL represents, so that can present the appropriate response to the user. The concept of converting a URL to a location within the code is known as "Routing".
+В PHP-приложении, таком как XF2, нам нужен способ принять запрос пользователя на определенный URL-адрес, понять, какой контроллер, действие и какие данные представляет этот URL-адрес, чтобы представить соответствующий ответ пользователю. Концепция преобразования URL-адреса в местоположение в коде известна как "маршрутизация"(routing).
 
-In XF2, routing is almost entirely managed from one location within the Admin CP. That location is `ACP > Development > Routes`. Routes are grouped by one of two types, Public and Admin types and they provide the routing of requests within the Public and Admin apps respectively.
+В XF2 маршрутизация почти полностью управляется из ACP(панель администратора). Найти его можно по пути `ACP > Development > Routes`. Маршруты делятся на два типа, Public(Публичный) и Admin(Админ) они обеспечивают маршрутизацию запросов в приложениях Public и Admin соответственно.
 
 # <a name="part1"></a>Простой пример
-On the Routes page (see above) you should see an entry listed for `account/`. This is a public route and provides the routing for requests to the URL `index.php?account/`. This particular route is pretty simple; it only consists of a small amount of configuration. Notably, it consists of a "Route prefix", a section context and a controller class. Let's understand those bits in more detail:
+На странице маршрутов (см. выше), вы должны увидеть маршрут `account/`. Это Public маршрут, обеспечивающий маршрутизацию запросов к URL-адресу `index.php?account/`. Этот маршрут довольно простой; он состоит только из небольшого количества конфигураций. Notably, Он состоит из "префикса маршрута"(Route prefix), "контекста раздела"(section context) и класса контроллера(controller class). Давайте разберемся в этом более подробно:
 
 ### <a name="part2"></a>Префикс маршрута
 
-The route prefix is essentially the bit after `index.php?` and before the first `/`. It is the first step in identifying which controller to route the request to.
+Префикс маршрута идёт после `index.php?` и перед первым `/`. Это-первый шаг в определении, к какому контроллеру направить запрос.
 
 ### <a name="part3"></a>Раздел контекста
 
-The section context tells the navigation systems within XF which navigation item should be selected when a visitor is viewing a page routed to by this route. For public routes, the section context should be the ID of the top level navigation entry. For admin routes, this should refer to the ID of the most specific admin navigation entry (regardless of depth). 
+Контекст раздела сообщает навигационным системам в XF, какой вкладка навигации должна быть выбрана, когда посетитель просматривает страницу, направленную по этому маршруту. Для `Public` маршрутов контекст раздела должен быть идентификатором вкладки верхнего уровня. Для маршрутов `Admin` это должно обратиться к идентификатору самой вкладки навигации администратора (независимо от глубины).
 
-In the case of the account route, the section context doesn't necessarily apply by default, because we do not have an "account" navigation tab. But, to see this in action, just change the "Section context" value here to "forums", save changes and go to your account on the front end. You should now see that the "Forums" navigation tab is selected!
+В случае с маршрутом `index.php?account/`, контекст раздела не обязателен, поскольку у нас нет вкладки навигации "account". Но, чтобы увидеть это в действии, просто измените значение "контекст раздела" здесь на "forums", сохраните изменения и перейдите в свою учетную запись `index.php?account/`. Теперь вы должны увидеть, что выбрана вкладка навигации "форумы"!
 
 ### <a name="part4"></a>Контроллер
 
-This is the class name of the Controller that should be called when a request matches this route. In the case of the "account/" route, we have `XF:Account` specified. This will load the Account controller. (Смотрите [Короткие имена классов](/documentation/GeneralConcepts.md#part5) для дополнительной информации). The code for this is located in the following location `src/XF/Pub/Controller/Account.php`. Notice how short class names are able to resolve to an "infix" as well as a prefix (XF) and a suffix (Account). In this case, the infix for this controller (Pub) is inferred from the Account route type (public).
+Это имя класса контроллера, которое должно быть вызвано, когда запрос совпадает с этим маршрутом. В случае с маршрутом "account/", у нас есть `XF:Account`. Это загрузит контроллер учетной записи. (Смотрите [Короткие имена классов](/documentation/GeneralConcepts.md#part5) для дополнительной информации). Код этого контроллера располагается по этому пути `src/XF/Pub/Controller/Account.php`. Notice how short class names are able to resolve to an "infix" as well as a prefix (XF) and a suffix (Account). In this case, the infix for this controller (Pub) is inferred from the Account route type (public).
 
 ### <a name="part5"></a>Экшен контроллера
 
-Above we explained how a route is matched to a specific controller, but we don't yet know how a specific action within that controller is called. Controllers are essentially classes that contain a number of action methods and it is the part of the URL after the [Префикс маршрута](/documentation/RoutingBasics.md#part2) which indicates the controller action. Given a URL of `index.php?account/account-details`, you should be routed to the class `XF\Pub\Controller\Account` and the method named `actionAccountDetails()`. If a route does not specify an action, then the method called is simply `actionIndex()`.
+Выше мы объяснили, как маршрут сопоставляется с определенным контроллером, но мы еще не знаем, как вызывается определенное действие в этом контроллере. Контроллеры являются классами, которые содержат ряд методов, и часть URL после [префикса маршрута](/documentation/RoutingBasics.md#part2) указывает на действие контроллера. Данный URL `index.php?account/account-details`, вызывает класс контроллера `XF\Pub\Controller\Account` с именем метода `actionAccountDetails()`. Если маршрут не указывает действие, то вызывается метод `actionIndex()`.
 
 Вы можете больше узнать о контроллерах в разделе [Основы контроллера](/documentation/ControllerBasics.md#part0).
 
 ### <a name="par6t"></a>Более продвинутый пример (форматы маршрута)
 
-Let's look at the `members/` route. This route is still pretty simple, like the `account/` route, but it has an additional field populated; the "Route format". To understand how that works, look at your own user profile on the front end. The URL of that profile will look something like this `index.php?members/your-name.1`. Specifically, take note of the `your-name.1` part. This is the part we're attempting to match using the "Route format".
+Давайте посмотрим на маршрут `members/`. Этот маршрут простой, также как и маршрут `account/`, но у него есть дополнительное поле; "формат маршрута"(Route format). Чтобы понять, как это работает, посмотрите на свой профиль. URL этого профиля будет выглядеть примерно так `index.php?members/your-name.1`. В частности, обратите внимание на `your-name.1`. Это та часть, которую мы пытаемся сопоставить, используя "формат маршрута".
 
-The "Route format" allows us to extract data from a request URL, so we can pass that information into the controller action so that the action can load specific information; in this case it loads the details for the requested user profile. It also helps us build links from data passed in. Here's the syntax:
+"Формат маршрута" позволяет нам извлекать данные из URL запроса, так мы можем передать данные в действие контроллера, чтобы оно могло загрузить определенную информацию; в этом случае загружается профиль запрошенного пользователя. Это также помогает нам создавать ссылки из передаваемых данных. Вот синтаксис:
 ```
 :int<user_id,username>/:page
 ```
 
-It's interesting to note at this point that the important part of a profile URL for finding the profile is not actually the `your-name` bit, but it is actually the user ID (`1`). To demonstrate this, change the URL and replace `your-name` with `not-your-name`. You will see that the correct profile is found, and a redirect is performed to the correct URL.
+Интересно отметить, что важной частью URL-адреса профиля для поиска профиля является не `your-name`, а идентификатор пользователя (`1`). Чтобы продемонстрировать это, измените часть URL `your-name` на `not-your-name`.Вы увидите, что правильный профиль найден, и перенаправление выполнено к правильному URL.
 
-The above format indicates that it's an integer based parameter. For building an outgoing link, we pull the integer from the user_id key of the data passed in. If a username key is passed into the data, it will be "slugified" and prepended to the integer ID like you see in the URL to your profile. For matching an incoming URL, this gets turned into a regular expression that matches the integer parameter format.
+Приведенный выше формат указывает, что это целочисленный параметр. Для построения исходящей ссылки мы извлекаем целое число из ключа `user_id` передаваемых данных. Если ключ имени пользователя передается в данные, он будет "слагифицирован" и добавлен к целочисленному идентификатору, как вы видите в URL-адресе вашего профиля. Для сопоставления входящего URL-адреса это преобразуется в регулярное выражение, соответствующее целочисленному формату параметра.
 
-`:page` is a shortcut for generating the page-123 part of a link. In this case, it looks for the page in the link parameters. If found, it's put in the URL and then removed from the params. For incoming parsing, if matched (it can be empty), it will add the page number to the parameters passed to a controller.
+`:page` это ярлык для генерации части ссылки на странице-123. В этом случае он ищет страницу в параметрах ссылки. Если он найден, он помещается в URL-адрес, а затем удаляется из параметров. Для входящего парсинга, если он совпадает (он может быть пустым), добавит номер страницы к параметрам, передаваемым в контроллер.
 
 ### <a name="part7"></a>Параметры маршрута
 
-When a route is matched to a specific controller and action, any parameters in the URL are wrapped up into a special object we call the `ParameterBag`. This object is specifically designed to separate normal URL parameters with those which come from the route match. The `ParameterBag` object is passed into every controller action, and is used as follows:
+Когда маршрут совпадает с определенным контроллером и действием, любые параметры в URL-адресе обернуты в специальный объект, который мы называем `ParameterBag`. Этот объект специально разработан, чтобы отделить обычные параметры URL с теми, которые прибывают из соответствия маршрута. Объект `ParameterBag` передается в каждое действие контроллера и используется следующим образом:
 ```
 $userId = $params->user_id;
 ```
 
 ### <a name="part8"></a>Суб-имена
 
-It is also possible to split routes into further sub-names. You can see this in action by looking at the `members/following` route. In this example, `following` is the sub-name to the route `members`. Ordinarily, a URL which looks like `index.php?members/following`, the `following` part would indicate the action, and simply match against the normal `members/` route. However, if there's a route that matches the prefix "members" and the "sub-name" following, it will be used instead. This is true here, so it builds a link like the following:
+Также можно разделять маршруты на дополнительные суб-имена. Вы можете увидеть это в действии, глядя на маршрут `members/following`. В этом примере, `following` является ли ссуб-именем маршрута `members`. Обычно URL-адрес выглядит следующим образом `index.php?members/following`, где часть `following` будет указывать на действие и просто соответствовать нормальному маршруту `members/`. Однако, если есть маршрут, который соответствует префиксу «members» и «sub-name», указанному ниже, он будет использоваться вместо этого. Это верно здесь, поэтому он создает ссылку, как показано ниже:
 ```
 members/:int<user_id,username>/following/:page
 ```
 
-For incoming route matching, this route will be tested before the basic members route; if it matches, it will be used.
+Для сопоставления входящего маршрута этот маршрут будет протестирован перед маршрутом `members`; если он совпадает, он будет использоваться.
 
-This sub-name system allows behavior changes, such as changing the position of parameters or sub-grouping routes into different controllers or with different params. You can see an example of the latter in the Resource Manager and Media Gallery add-ons.
+Эта система суб-имён позволяет изменять поведение, например, изменять положение параметров или подгруппировать маршруты на разных контроллерах или с разными параметрами. Пример последнего можно увидеть в менеджере ресурсов и надстройках Media Gallery.
